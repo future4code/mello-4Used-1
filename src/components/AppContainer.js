@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import Produtos from './Produtos'
+import CardGrid from './CardGrid/CardGrid'
 
 export class AppContainer extends Component {
   render() {
     return (
       <div>
-        <Produtos />
+        <CardGrid />
+
 
 
       </div>
