@@ -18,7 +18,7 @@ font-size: 100%;
 const Nav = styled.nav`
 display: flex;
 flex-direction: column;
-margin:auto 7%;
+margin: auto 7%;
 ;
 `
 const Title = styled.h3`

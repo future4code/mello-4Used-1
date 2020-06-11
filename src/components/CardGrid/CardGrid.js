@@ -20,16 +20,19 @@ const styles = theme => ({
 
 
 function ComplexGrid(props) {
+    const renderProducts = 
+        props.products.map(product => {
+            return(
+                <Card foto={product.photos[0]} name={product.name} preco={product.price} />
+            )
+        }) 
+        
+    
+    
     const { classes } = props;
     return (
         <div className={classes.root}>
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-            <Card foto='https://i.picsum.photos/id/136/200/200.jpg' name='xícara' preco='R$30,00' />
-
+            {renderProducts}
 
         </div>
     );
