@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 
 const FilterPrice = styled.div`
 display:flex;
@@ -16,18 +17,29 @@ color: #425454;
 `
 
 export default class Filter extends React.Component{
+    state={
+        products:[],
+        valueInputMax:"",
+        valueInputMin:"",
+
+    };
+    changeInput=(e)=>{
+        this.setState({[e.target.id]:e.target.value })
+    }
+   
+
     render(){
         return(
-            <div>
-                 <FilterPrice>    
-                        <Title>Filtrar por preço</Title>
-                        <Labels>Valor Máximo:</Labels>
-                        <input/>
-                        <Labels>Valor Mínimo:</Labels>
-                        <input/>
-                    </FilterPrice>
+            
+          <FilterPrice>    
+            <Title>Filtrar por preço</Title>
+            <Labels>Valor Máximo:</Labels>
+            <TextField onChange={this.changeInput} type="number" id="valueInputMax"/>
+            <Labels>Valor Mínimo:</Labels>
+            <TextField onChange={this.changeInput} type="number" id="valueInputMin"/>
+          </FilterPrice>
 
-            </div>
+            
 
         );
     }

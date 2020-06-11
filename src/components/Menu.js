@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import TextField from '@material-ui/core/TextField';
+import Filter from './Filter.js'
 
 const Container = styled.div`
 display: flex;
@@ -19,13 +20,6 @@ display: flex;
 flex-direction: column;
 margin:auto 7%;
 ;
-`
-
-const Filter = styled.div`
-display:flex;
-flex-direction: column;
-width: 80%;
-font-size: 80%;
 `
 const Title = styled.h3`
 color: #95203A;
@@ -55,14 +49,7 @@ export default class Menu extends React.Component{
                     <Itens>Eletrônicos</Itens>
                     <Itens>Outros</Itens>
                     <hr />
-                   
-                    <Filter>    
-                        <Title>Filtrar por preço</Title>
-                        <Labels>Valor Máximo:</Labels>
-                        <TextField type="number"/>
-                        <Labels>Valor Mínimo:</Labels>
-                        <TextField type="number"/>
-                    </Filter>
+                    <Filter />
                 </Nav>     
             </Container>  
         )
