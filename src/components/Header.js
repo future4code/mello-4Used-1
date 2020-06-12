@@ -10,7 +10,7 @@ import {
   IconButton,
   Typography,
 } from '@material-ui/core';
-import { Search, ShoppingCart, Face } from '@material-ui/icons';
+import { Search, Home, ShoppingCart, Face } from '@material-ui/icons';
 
 const StyledToolbar = styled(Toolbar)`
   background: #7c574f;
@@ -29,7 +29,7 @@ const StyledToolbar = styled(Toolbar)`
     height: 100%;
     .searchBar {
       height: 50%;
-      display: flex;
+      display: ${(props) => (props.active === 'cardGrid' ? 'flex' : 'none')};
       align-items: center;
       justify-content: center;
       margin-right: 16px;
@@ -43,6 +43,12 @@ const StyledToolbar = styled(Toolbar)`
     }
     .menuItems {
       display: flex;
+      .home {
+        .homeIcon {
+          width: 35px;
+          height: 35px;
+        }
+      }
       .cart {
         .cartIcon {
           width: 35px;
@@ -71,26 +77,56 @@ const StyledIconButton = styled(IconButton)`
 
 class Header extends Component {
   render() {
+    const {
+      active,
+      searchValue,
+      handleSearchValue,
+      handleMenuItems,
+    } = this.props;
     return (
       <AppBar>
-        <StyledToolbar>
-          <img src={logo} alt="4Used logo" className="logo" />
+        <StyledToolbar active={active}>
+          <img
+            onClick={() => handleMenuItems('cardGrid')}
+            src={logo}
+            alt="4Used logo"
+            className="logo"
+          />
 
           <div className="topMenu">
-            <div className="searchBar">
+            <div className="searchBar" active={active}>
               <Search className="searchIcon" />
-              <InputBase type="search" className="searchInput" />
+              <InputBase
+                onChange={(e) => handleSearchValue(e.target.value)}
+                value={searchValue}
+                type="search"
+                className="searchInput"
+              />
             </div>
 
             <div className="menuItems">
               <div>
-                <StyledIconButton className="cart">
+                <StyledIconButton
+                  onClick={() => handleMenuItems('cardGrid')}
+                  className="home"
+                >
+                  <Home className="homeIcon" />
+                </StyledIconButton>
+              </div>
+              <div>
+                <StyledIconButton
+                  onClick={() => handleMenuItems('gridCarrinho')}
+                  className="cart"
+                >
                   <ShoppingCart className="cartIcon" />
                 </StyledIconButton>
               </div>
 
               <div>
-                <StyledIconButton className="profile">
+                <StyledIconButton
+                  onClick={() => handleMenuItems('cadastrarProduto')}
+                  className="profile"
+                >
                   <Face className="profileIcon" />
                 </StyledIconButton>
                 <Typography
