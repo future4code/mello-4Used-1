@@ -20,15 +20,15 @@ const styles = theme => ({
 
 
 function ComplexGrid(props) {
-    const renderProducts = 
+    const renderProducts =
         props.products.map(product => {
-            return(
-                <Card foto={product.photos[0]} name={product.name} preco={product.price} />
+            return (
+                <Card productId={product.id} addToCart={props.addToCart} foto={product.photos[0]} name={product.name} preco={product.price} handleActiveContent={props.handleActiveContent} />
             )
-        }) 
-        
-    
-    
+        })
+
+
+
     const { classes } = props;
     return (
         <div className={classes.root}>

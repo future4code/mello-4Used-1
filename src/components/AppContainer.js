@@ -23,6 +23,7 @@ export class AppContainer extends Component {
     active: 'cardGrid',
     products: [],
     searchValue: '',
+    cart: [],
   };
 
   componentDidMount = () => {
@@ -42,12 +43,36 @@ export class AppContainer extends Component {
     this.setState({ searchValue: newValue });
   };
 
-  handleMenuItems = (newActive) => {
+  handleActiveContent = (newActive) => {
     this.setState({ active: newActive });
   };
 
+  addToCart = (id) => {
+    const selectedProduct = this.state.products.find(product => id === product.id)
+    const newCart = [...this.state.cart, selectedProduct]
+    console.log(newCart)
+    this.setState({ cart: newCart })
+  }
+  removeItem = (id) => {
+    const newCart = this.state.cart.filter((product) => {
+      return id !== product.id
+
+    })
+    this.setState({ cart: newCart })
+  }
+  checkOut = (event) => {
+    event.preventDefault()
+    alert("Obrigado pela compra")
+    this.setState({ cart: [] })
+  }
+
   render() {
-    const { active, products, searchValue } = this.state;
+    const { active, products, searchValue, cart } = this.state;
+    const handleActiveContent = this.handleActiveContent;
+    const handleSearchValue = this.handleSearchValue;
+    const addToCart = this.addToCart;
+    const removeItem = this.removeItem;
+    const checkOut = this.checkOut;
     const filteredProducts = products.filter((product) => {
       const productName = product.name.toLowerCase();
       return productName.indexOf(searchValue.toLowerCase()) >= 0;
@@ -59,11 +84,11 @@ export class AppContainer extends Component {
           return (
             <>
               <Menu />
-              <CardGrid products={filteredProducts} />
+              <CardGrid addToCart={addToCart} handleActiveContent={handleActiveContent} products={filteredProducts} />
             </>
           );
         case 'gridCarrinho':
-          return <GridCarrinho />;
+          return <GridCarrinho checkOut={checkOut} removeItem={removeItem} cart={cart} />;
         case 'cadastrarProduto':
           return <CadastrarProduto />;
         default:
@@ -77,19 +102,13 @@ export class AppContainer extends Component {
     }
     return (
       <StyledApp>
-
-       
-        
-
         <Header
           active={active}
-          searchValue={this.state.searchValue}
-          handleSearchValue={this.handleSearchValue}
-          handleMenuItems={this.handleMenuItems}
+          searchValue={searchValue}
+          handleSearchValue={handleSearchValue}
+          handleActiveContent={handleActiveContent}
         />
         <div className="content">{renderActive()}</div>
-
-
         <Footer />
       </StyledApp>
     );

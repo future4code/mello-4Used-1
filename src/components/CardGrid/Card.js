@@ -32,11 +32,16 @@ const styles = theme => ({
 function Card(props) {
 
     const { classes } = props;
+    const handleSelectProduct = () => {
+        props.addToCart(props.productId)
+        props.handleActiveContent('gridCarrinho')
+
+    }
     return (
         <Paper className={classes.paper}>
             <Grid container spacing={16}>
                 <Grid item>
-                    <ButtonBase className={classes.image}>
+                    <ButtonBase onClick={handleSelectProduct} className={classes.image}>
                         <img className={classes.img} alt="complex" src={props.foto} />
                     </ButtonBase>
                 </Grid>

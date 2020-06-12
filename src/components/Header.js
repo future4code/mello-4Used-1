@@ -81,13 +81,13 @@ class Header extends Component {
       active,
       searchValue,
       handleSearchValue,
-      handleMenuItems,
+      handleActiveContent,
     } = this.props;
     return (
       <AppBar>
         <StyledToolbar active={active}>
           <img
-            onClick={() => handleMenuItems('cardGrid')}
+            onClick={() => handleActiveContent('cardGrid')}
             src={logo}
             alt="4Used logo"
             className="logo"
@@ -107,7 +107,7 @@ class Header extends Component {
             <div className="menuItems">
               <div>
                 <StyledIconButton
-                  onClick={() => handleMenuItems('cardGrid')}
+                  onClick={() => handleActiveContent('cardGrid')}
                   className="home"
                 >
                   <Home className="homeIcon" />
@@ -115,7 +115,7 @@ class Header extends Component {
               </div>
               <div>
                 <StyledIconButton
-                  onClick={() => handleMenuItems('gridCarrinho')}
+                  onClick={() => handleActiveContent('gridCarrinho')}
                   className="cart"
                 >
                   <ShoppingCart className="cartIcon" />
@@ -124,7 +124,7 @@ class Header extends Component {
 
               <div>
                 <StyledIconButton
-                  onClick={() => handleMenuItems('cadastrarProduto')}
+                  onClick={() => handleActiveContent('cadastrarProduto')}
                   className="profile"
                 >
                   <Face className="profileIcon" />
