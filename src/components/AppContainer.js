@@ -45,6 +45,7 @@ export class AppContainer extends Component {
           <Menu />
           <CardGrid products={this.state.products} />
         </div>
+          <CadastrarProduto></CadastrarProduto>
         
         <Footer />
       </StyledApp>
