@@ -77,6 +77,10 @@ export class AppContainer extends Component {
     }
     return (
       <StyledApp>
+
+       
+        
+
         <Header
           active={active}
           searchValue={this.state.searchValue}
@@ -84,6 +88,7 @@ export class AppContainer extends Component {
           handleMenuItems={this.handleMenuItems}
         />
         <div className="content">{renderActive()}</div>
+
 
         <Footer />
       </StyledApp>
