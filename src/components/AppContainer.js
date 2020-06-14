@@ -10,11 +10,13 @@ import { CadastrarProduto } from './PaginaCadastroProodutos';
 import Footer from './Footer';
 
 const StyledApp = styled.div`
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   .content {
+    height: 80vh;
     display: flex;
-    margin-top: 100px;
   }
 `;
 
@@ -48,23 +50,23 @@ export class AppContainer extends Component {
   };
 
   addToCart = (id) => {
-    const selectedProduct = this.state.products.find(product => id === product.id)
-    const newCart = [...this.state.cart, selectedProduct]
-    console.log(newCart)
-    this.setState({ cart: newCart })
-  }
+    const selectedProduct = this.state.products.find(
+      (product) => id === product.id
+    );
+    const newCart = [...this.state.cart, selectedProduct];
+    this.setState({ cart: newCart });
+  };
   removeItem = (id) => {
     const newCart = this.state.cart.filter((product) => {
-      return id !== product.id
-
-    })
-    this.setState({ cart: newCart })
-  }
+      return id !== product.id;
+    });
+    this.setState({ cart: newCart });
+  };
   checkOut = (event) => {
-    event.preventDefault()
-    alert("Obrigado pela compra")
-    this.setState({ cart: [] })
-  }
+    event.preventDefault();
+    alert('Obrigado pela compra');
+    this.setState({ cart: [] });
+  };
 
   render() {
     const { active, products, searchValue, cart } = this.state;
@@ -84,11 +86,21 @@ export class AppContainer extends Component {
           return (
             <>
               <Menu />
-              <CardGrid addToCart={addToCart} handleActiveContent={handleActiveContent} products={filteredProducts} />
+              <CardGrid
+                addToCart={addToCart}
+                handleActiveContent={handleActiveContent}
+                products={filteredProducts}
+              />
             </>
           );
         case 'gridCarrinho':
-          return <GridCarrinho checkOut={checkOut} removeItem={removeItem} cart={cart} />;
+          return (
+            <GridCarrinho
+              checkOut={checkOut}
+              removeItem={removeItem}
+              cart={cart}
+            />
+          );
         case 'cadastrarProduto':
           return <CadastrarProduto />;
         default:
@@ -108,7 +120,7 @@ export class AppContainer extends Component {
           handleSearchValue={handleSearchValue}
           handleActiveContent={handleActiveContent}
         />
-        <div className="content">{renderActive()}</div>
+        <div className='content'>{renderActive()}</div>
         <Footer />
       </StyledApp>
     );
