@@ -14,11 +14,13 @@ import { Search, Home, ShoppingCart, Face } from '@material-ui/icons';
 
 const StyledToolbar = styled(Toolbar)`
   background: #7c574f;
+  height: 15vh;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   .logo {
-    max-width: 100px;
+    max-width: 14vh;
     height: auto;
     cursor: pointer;
   }
@@ -84,55 +86,55 @@ class Header extends Component {
       handleActiveContent,
     } = this.props;
     return (
-      <AppBar>
+      <AppBar position='static'>
         <StyledToolbar active={active}>
           <img
             onClick={() => handleActiveContent('cardGrid')}
             src={logo}
-            alt="4Used logo"
-            className="logo"
+            alt='4Used logo'
+            className='logo'
           />
 
-          <div className="topMenu">
-            <div className="searchBar" active={active}>
-              <Search className="searchIcon" />
+          <div className='topMenu'>
+            <div className='searchBar' active={active}>
+              <Search className='searchIcon' />
               <InputBase
                 onChange={(e) => handleSearchValue(e.target.value)}
                 value={searchValue}
-                type="search"
-                className="searchInput"
+                type='search'
+                className='searchInput'
               />
             </div>
 
-            <div className="menuItems">
+            <div className='menuItems'>
               <div>
                 <StyledIconButton
                   onClick={() => handleActiveContent('cardGrid')}
-                  className="home"
+                  className='home'
                 >
-                  <Home className="homeIcon" />
+                  <Home className='homeIcon' />
                 </StyledIconButton>
               </div>
               <div>
                 <StyledIconButton
                   onClick={() => handleActiveContent('gridCarrinho')}
-                  className="cart"
+                  className='cart'
                 >
-                  <ShoppingCart className="cartIcon" />
+                  <ShoppingCart className='cartIcon' />
                 </StyledIconButton>
               </div>
 
               <div>
                 <StyledIconButton
                   onClick={() => handleActiveContent('cadastrarProduto')}
-                  className="profile"
+                  className='profile'
                 >
-                  <Face className="profileIcon" />
+                  <Face className='profileIcon' />
                 </StyledIconButton>
                 <Typography
-                  className="profileText"
+                  className='profileText'
                   style={{ color: '#F4EEB4' }}
-                  align="center"
+                  align='center'
                 >
                   <span>Entrar</span>
                 </Typography>
